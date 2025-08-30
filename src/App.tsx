@@ -18,7 +18,7 @@ function App() {
     <div className='h-screen w-screen flex flex-col items-center justify-center space-y-6'>
       <div>Lose Win</div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord />
+      <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
       <div className='self-stretch'>
         <Keyboard />
       </div>
