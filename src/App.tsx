@@ -43,8 +43,8 @@ function App() {
 
   return (
     <div className='h-screen w-screen flex flex-col items-center justify-center space-y-6'>
-      <div>{isWinner && "Winner! - Refresh to try again"}</div>
-      <div>{isLoser && "Nice try! - Refresh to try again"}</div>
+      <div className='font-bold text-lg'>{isWinner && "Winner! - Refresh to try again"}</div>
+      <div className='font-bold text-lg'>{isLoser && "Nice try! - Refresh to try again"}</div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord reveal={isLoser} guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
       <div className='self-stretch'>

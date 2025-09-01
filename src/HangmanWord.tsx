@@ -7,12 +7,13 @@ type HangmanWordProps = {
 export function HangmanWord({ guessedLetters, wordToGuess, reveal = false }: HangmanWordProps) {
 
 
-    return <div className="flex text-7xl gap-4 uppercase">
+    return <div className="flex text-6xl gap-4 uppercase">
         {wordToGuess.split("").map((letter, index) => (
-            <span className="border-b-4">
+            <span className="border-b-4 w-10 flex justify-center">
                 <span className={`${guessedLetters.includes(letter) ? "text-black" : reveal ? "text-red-500" : "text-transparent"}`}>
                     {letter}
-                </span>            </span>
+                </span>
+            </span>
         ))}
     </div>
 
