@@ -14,11 +14,14 @@ function App() {
 
   const incorrectLetters = guessedLetters.filter(letter => !wordToGuess.includes(letter))
 
+  const isLoser = incorrectLetters.length >= 6
+  const isWinner = wordToGuess.split("").every(letter => guessedLetters.includes(letter))
+
   const addGuessedLetter = useCallback((letter: string) => {
-    if (guessedLetters.includes(letter)) return
+    if (guessedLetters.includes(letter) || isLoser || isWinner) return
 
     setGuessedLetters(currentLetters => [...currentLetters, letter])
-  }, [guessedLetters])
+  }, [guessedLetters, isWinner, isLoser])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -37,9 +40,6 @@ function App() {
     }
   }, [guessedLetters])
 
-  const isLoser = incorrectLetters.length >= 6
-
-  const isWinner = wordToGuess.split("").every(letter => guessedLetters.includes(letter))
 
   return (
     <div className='h-screen w-screen flex flex-col items-center justify-center space-y-6'>
