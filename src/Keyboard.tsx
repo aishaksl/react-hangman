@@ -28,13 +28,14 @@ const keys: string[] = [
 ]
 
 type KeyboardProps = {
+    disabled: boolean
     activeLetter: string[]
     inactiveLetters: string[]
     addGuessedLetter: (letter: string) => void
 }
 // Check if the current key is in the list of correctly active-iaktive letters
 
-export function Keyboard({ activeLetter, inactiveLetters, addGuessedLetter }: KeyboardProps) {
+export function Keyboard({ disabled = false, activeLetter, inactiveLetters, addGuessedLetter }: KeyboardProps) {
     return <div className="grid grid-cols-10 gap-1 mx-4 md:mx-12">{keys.map((key: string) => {
 
         const isActive = activeLetter.includes(key)
@@ -44,7 +45,7 @@ export function Keyboard({ activeLetter, inactiveLetters, addGuessedLetter }: Ke
               hover:bg-blue-400 focus:bg-blue-400
               ${isActive ? "bg-blue-400 text-white" : ""}
               ${isInactive ? "bg-gray-400 text-white cursor-not-allowed" : ""}`}
-            disabled={isActive || isInactive}
+            disabled={isActive || isInactive || disabled}
         >
             {key}</button>
     })}</div>

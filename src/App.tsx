@@ -37,14 +37,20 @@ function App() {
     }
   }, [guessedLetters])
 
+  const isLoser = incorrectLetters.length >= 6
+
+  const isWinner = wordToGuess.split("").every(letter => guessedLetters.includes(letter))
 
   return (
     <div className='h-screen w-screen flex flex-col items-center justify-center space-y-6'>
-      <div>Lose Win</div>
+      <div>{isWinner && "Winner! - Refresh to try again"}</div>
+      <div>{isLoser && "Nice try! - Refresh to try again"}</div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
       <div className='self-stretch'>
-        <Keyboard activeLetter={guessedLetters.filter(letter => wordToGuess.includes(letter))}
+        <Keyboard
+          disabled={isWinner || isLoser}
+          activeLetter={guessedLetters.filter(letter => wordToGuess.includes(letter))}
           inactiveLetters={incorrectLetters}
           addGuessedLetter={addGuessedLetter} />
       </div>
